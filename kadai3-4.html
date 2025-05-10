@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta charset="urf-8">
+        <meta charset="utf-8">   //先生が授業で言っていた通り、utfがurfになっていたので変更
         <title>演習課題3-4：自動販売機</title>
     </head>
     <body>
@@ -23,13 +23,25 @@
                 console.log("商品は以下の" + items.length + "種類です。");
 
                 // 配列の内容を項目毎に出力
-                // ここにコードを書く
+               for (let item of items) {
+                    console.log(`商品番号: ${item.id}, 商品名: ${item.name}, 金額: ${item.price}, 在庫数: ${item.stock}`);
+                } // 編集箇所
                 console.log(""); // 空行の出力
             }
 
             // 商品購入の関数
             function buyItem(no) {
-                // ここにコードを書く
+                const item = items.find(i => i.id === no);
+                if (item) {
+                    console.log(`商品番号: ${item.id}, 商品名: ${item.name}を購入します。`);
+                    if (item.stock > 0) {
+                        item.stock--;
+                    } else {
+                        console.log("在庫がありません。");
+                    }
+                } else {
+                    console.log("指定された商品は存在しません。");
+                }// 購入の関数と、ない場合の表示を追加
                 showItemList(); // 商品一覧の表示関数呼び出し
             }
 
